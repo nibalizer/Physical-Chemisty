@@ -23,9 +23,62 @@ def RK(V, R, T, A, B):
     return p
 
 
-def sixteen_fortyseven
+def sixteen_fortyseven(name):
+    #const
 
+    #argon
+    ar_2_pi_sigma = 50
+    ar_epsilon_kb = 120
+    ar_T = [173, 223, 273, 323, 423, 473, 573, 673]
+    ar_B2 = [-64.3, -37.8, -22.1, -11.0, 1.2, 4.7, 11.2, 15.3]
+    ar_Tstar = []
+    ar_B2vstar = []
 
+    for i in range(len(ar_T)):
+        ar_Tstar.append(ar_T[i] / ar_epsilon_kb)
+        ar_B2vstar.append(ar_B2[i] / ar_2_pi_sigma)
+
+    #Nitrogen
+    n2_2_pi_sigma = 95.1
+    n2_epsilon_kb = 63.9
+    n2_T = [143, 173, 223, 273, 323, 373, 423, 473, 573, 673]
+    n2_B2 = [-79.8, -51.9, -26.4, -10.3, -0.3, 6.1, 11.5, 15.3, 20.6, 23.5]
+
+    n2_Tstar = []
+    n2_B2vstar = []
+    
+    for i in range(len(n2_T)):
+        n2_Tstar.append(n2_T[i] / n2_epsilon_kb)
+        n2_B2vstar.append(n2_B2[i] / n2_2_pi_sigma)
+    
+    # Ethane
+    c2h6_2_pi_sigma = 77.7
+    c2h6_epsilon_kb = 243
+    c2h6_T = [311, 344, 378, 411, 444, 478, 511]
+    c2h6_B2 = [-164.9, -132.5, -110.0, -90.4, -74.2, -59.9, -47.4]
+
+    c2h6_Tstar = []
+    c2h6_B2vstar = []
+
+    for i in range(len(c2h6_T)):
+        c2h6_Tstar.append(c2h6_T[i] / c2h6_epsilon_kb)
+        c2h6_B2vstar.append(c2h6_B2[i] / c2h6_2_pi_sigma)
+
+    
+    ion()
+    plot(ar_Tstar, ar_B2vstar, 'go', label="Argon")
+    plot(n2_Tstar, n2_B2vstar, 'ro', label="Nitrogen")
+    plot(c2h6_Tstar, c2h6_B2vstar, 'bo', label="Ethane")
+    ylabel('B*2v(T)')
+    xlabel('T*')
+    title("Problem 16.47")
+    legend(numpoints=1)
+    grid(True)
+    draw()
+    hold(True)
+    savefig(name)
+    ioff()
+    raw_input("Press return to quit")
 
 #for i in range(10):
 #    print twenty(i)
@@ -114,4 +167,5 @@ def sixteen_twenty(name):
 
 sixteen_thirtyone('Ch16_31.png')
 sixteen_twenty('Ch16_20.png')
+sixteen_fortyseven('Ch16_47.png')
 
